@@ -1,0 +1,28 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/maserrch"
+        android:icon="@drawable/toolbar_new_node_press"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="时间"/>
+    <item
+        android:id="@+id/mavideo"
+        android:icon="@drawable/toolbar_sort_press"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="音乐"/>
+    <item
+        android:id="@+id/mabook"
+        android:icon="@drawable/toolbar_view_grid_press"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="读书"/>
+    <item
+        android:id="@+id/mapphoto"
+        android:icon="@drawable/toolbar_view_list_press"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="照片"/>
+
+</menu>
