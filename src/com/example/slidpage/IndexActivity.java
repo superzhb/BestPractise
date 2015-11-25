@@ -1,35 +1,58 @@
 package com.example.slidpage;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.PagerAdapter;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.MenuItem.OnActionExpandListener;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewConfiguration;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.SearchView;
+import android.widget.Toast;
+
+import com.example.slidpage.util.PagerSlidingTabStrip;
 
 public class IndexActivity extends FragmentActivity implements OnClickListener {
-	private TextView t1, t2, t3, t4;
 	private ViewPager pager;
-	private View view1, view2, view3, view4;
-	private List<View> views;
+	private Fragment fragment1, fragment2, fragment3;
+	private FragmentManager fragmentManager;
+	private String[] title = new String[] { "消息", "联系人", "设置" };
+	private PagerSlidingTabStrip tabStrip;
+	private DisplayMetrics dm;
+	private SearchView searchView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_index);
+		dm = getResources().getDisplayMetrics();
+		tabStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
+		tabStrip.setShouldExpand(true);
+		tabStrip.setTextColor(Color.parseColor("#45c01a"));
+		tabStrip.setIndicatorColor(Color.parseColor("#45c01a"));
+		tabStrip.setIndicatorHeight((int) TypedValue.applyDimension(
+				TypedValue.COMPLEX_UNIT_DIP, 4, dm));
+		tabStrip.setUnderlineHeight((int) TypedValue.applyDimension(
+				TypedValue.COMPLEX_UNIT_DIP, 1, dm));
+		tabStrip.setTextSize((int) TypedValue.applyDimension(
+				TypedValue.COMPLEX_UNIT_SP, 15, dm));
 		initViewPager();
-		initText();
+
 		try {
 			ViewConfiguration config = ViewConfiguration.get(this);
 			Field menuKeyField = ViewConfiguration.class
@@ -43,59 +66,56 @@ public class IndexActivity extends FragmentActivity implements OnClickListener {
 		}
 	}
 
+	@SuppressLint("NewApi")
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main, menu);
-		return super.onCreateOptionsMenu(menu);
-	}
+		MenuItem item = menu.findItem(R.id.maserrch);
+		MenuItem music = menu.findItem(R.id.mavideo);
+		music.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
-	private void initText() {
-		t1 = (TextView) findViewById(R.id.inmsg);
-		t2 = (TextView) findViewById(R.id.inpeo);
-		t3 = (TextView) findViewById(R.id.inser);
-		t4 = (TextView) findViewById(R.id.inset);
-		t1.setOnClickListener(this);
-		t2.setOnClickListener(this);
-		t3.setOnClickListener(this);
-		t4.setOnClickListener(this);
-		t1.setTextColor(Color.BLUE);
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				Intent intent = new Intent(IndexActivity.this,
+						MusicActivity.class);
+				startActivity(intent);
+				return false;
+			}
+		});
+		searchView = (SearchView) item.getActionView();
+		searchView.setOnSearchClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(IndexActivity.this, "21212", Toast.LENGTH_SHORT)
+						.show();
+			}
+		});
+		item.setOnActionExpandListener(new OnActionExpandListener() {
+
+			@Override
+			public boolean onMenuItemActionExpand(MenuItem item) {
+				return false;
+			}
+
+			@Override
+			public boolean onMenuItemActionCollapse(MenuItem item) {
+				return false;
+			}
+		});
+		return super.onCreateOptionsMenu(menu);
 	}
 
 	private void initViewPager() {
 		pager = (ViewPager) findViewById(R.id.indexviewpager);
-		views = new ArrayList<View>();
-		view1 = getLayoutInflater().inflate(R.layout.activity_fragmen1, null);
-		view2 = getLayoutInflater().inflate(R.layout.activity_fragmen2, null);
-		view3 = getLayoutInflater().inflate(R.layout.activity_fragmen3, null);
-		view4 = getLayoutInflater().inflate(R.layout.activity_fragmen4, null);
-		views.add(view1);
-		views.add(view2);
-		views.add(view3);
-		views.add(view4);
-		pager.setCurrentItem(0);
+		fragment1 = new Fragment1();
+		fragment2 = new Fragment2();
+		fragment3 = new Fragment3();
 		pager.setOnPageChangeListener(new OnPageChangeListener() {
 
 			@Override
 			public void onPageSelected(int position) {
-				clearColor();
-				switch (position) {
-				case 0:
-					t1.setTextColor(Color.BLUE);
-					break;
-				case 1:
-					t2.setTextColor(Color.BLUE);
-					break;
-				case 2:
-					t3.setTextColor(Color.BLUE);
-					break;
-				case 3:
-					t4.setTextColor(Color.BLUE);
-					break;
-
-				default:
-					break;
-				}
 			}
 
 			@Override
@@ -109,66 +129,47 @@ public class IndexActivity extends FragmentActivity implements OnClickListener {
 
 			}
 		});
-		pager.setAdapter(new PagerAdapter() {
+		fragmentManager = getSupportFragmentManager();
+		pager.setAdapter(new MyFragmentPagerAdaptor(fragmentManager));
+		tabStrip.setViewPager(pager);
+	}
 
-			@Override
-			public boolean isViewFromObject(View view, Object object) {
-				return view == object;
+	class MyFragmentPagerAdaptor extends FragmentPagerAdapter {
+
+		public MyFragmentPagerAdaptor(FragmentManager fragmentManager) {
+			super(fragmentManager);
+		}
+
+		@Override
+		public CharSequence getPageTitle(int position) {
+
+			return title[position];
+		}
+
+		@Override
+		public Fragment getItem(int position) {
+			switch (position) {
+			case 0:
+				return fragment1;
+			case 1:
+				return fragment2;
+			case 2:
+				return fragment3;
+			default:
+				break;
 			}
+			return fragment1;
+		}
 
-			@Override
-			public int getCount() {
-				return views.size();
-			}
+		@Override
+		public int getCount() {
+			return title.length;
+		}
 
-			@Override
-			public void destroyItem(ViewGroup container, int position,
-					Object object) {
-				container.removeView(views.get(position));
-			}
-
-			@Override
-			public Object instantiateItem(ViewGroup container, int position) {
-
-				container.addView(views.get(position));
-				return views.get(position);
-			}
-		});
 	}
 
 	@Override
 	public void onClick(View v) {
-		clearColor();
-		setColor(v.getId());
 	}
 
-	private void setColor(int i) {
-		switch (i) {
-		case R.id.inmsg:
-			pager.setCurrentItem(0);
-			t1.setTextColor(Color.BLUE);
-			break;
-		case R.id.inpeo:
-			pager.setCurrentItem(1);
-			t2.setTextColor(Color.BLUE);
-			break;
-		case R.id.inser:
-			pager.setCurrentItem(2);
-			t3.setTextColor(Color.BLUE);
-			break;
-		case R.id.inset:
-			pager.setCurrentItem(3);
-			t4.setTextColor(Color.BLUE);
-			break;
-		default:
-			break;
-		}
-	}
-
-	private void clearColor() {
-		t1.setTextColor(Color.BLACK);
-		t2.setTextColor(Color.BLACK);
-		t3.setTextColor(Color.BLACK);
-		t4.setTextColor(Color.BLACK);
-	}
 }

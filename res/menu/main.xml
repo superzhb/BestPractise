@@ -5,10 +5,11 @@
         android:icon="@drawable/toolbar_new_node_press"
         android:orderInCategory="100"
         android:showAsAction="always"
-        android:title="时间"/>
+        android:actionViewClass="android.widget.SearchView"
+        android:title="搜索"/>
     <item
         android:id="@+id/mavideo"
-        android:icon="@drawable/toolbar_sort_press"
+        android:icon="@drawable/toolbar_sort"
         android:orderInCategory="100"
         android:showAsAction="always"
         android:title="音乐"/>
