@@ -23,7 +23,7 @@
         <activity android:name="com.example.slidpage.IndexActivity" >
         </activity>
         <activity
-            android:name="com.example.slidpage.MusicActivity"
+            android:name="com.example.slidpage.PicActivity"
             android:parentActivityName="com.example.slidpage.IndexActivity" >
         </activity>
     </application>

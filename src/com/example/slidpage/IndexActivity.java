@@ -78,7 +78,7 @@ public class IndexActivity extends FragmentActivity implements OnClickListener {
 			@Override
 			public boolean onMenuItemClick(MenuItem item) {
 				Intent intent = new Intent(IndexActivity.this,
-						MusicActivity.class);
+						PicActivity.class);
 				startActivity(intent);
 				return false;
 			}
