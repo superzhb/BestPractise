@@ -3,10 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
 
-    <TextView
+    <com.example.slidpage.util.PullToRefeshView
+        android:id="@+id/pulltorefresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="1122" />
+        android:layout_height="match_parent" >
+
+        <ListView
+            android:id="@+id/mylistview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+        </ListView>
+    </com.example.slidpage.util.PullToRefeshView>
+
 </LinearLayout>

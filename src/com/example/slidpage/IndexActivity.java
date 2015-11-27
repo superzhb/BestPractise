@@ -52,7 +52,6 @@ public class IndexActivity extends FragmentActivity implements OnClickListener {
 		tabStrip.setTextSize((int) TypedValue.applyDimension(
 				TypedValue.COMPLEX_UNIT_SP, 15, dm));
 		initViewPager();
-
 		try {
 			ViewConfiguration config = ViewConfiguration.get(this);
 			Field menuKeyField = ViewConfiguration.class
@@ -64,6 +63,7 @@ public class IndexActivity extends FragmentActivity implements OnClickListener {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 	@SuppressLint("NewApi")

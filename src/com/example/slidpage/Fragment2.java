@@ -1,15 +1,33 @@
 package com.example.slidpage;
 
+import com.example.slidpage.util.PullToRefeshView;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView.FindListener;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class Fragment2 extends Fragment {
+	private ListView listView;
+	private PullToRefeshView pullToRefeshView;
+	private ArrayAdapter<String> adapter;
+	String[] strs = new String[] { "A", "B", "C", "D", "E", "F", "G", "H", "I",
+			"J", "K", "L" };
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.activity_fragmen2, null);
+		View view = inflater.inflate(R.layout.activity_fragmen2, null);
+		pullToRefeshView = (PullToRefeshView) view
+				.findViewById(R.id.pulltorefresh);
+		listView = (ListView) view.findViewById(R.id.mylistview);
+		adapter = new ArrayAdapter<String>(getActivity(),
+				android.R.layout.simple_list_item_1, strs);
+		listView.setAdapter(adapter);
+		return view;
 	}
 }

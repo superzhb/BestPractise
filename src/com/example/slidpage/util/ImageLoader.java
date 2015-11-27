@@ -24,6 +24,7 @@ public class ImageLoader {
 	}
 
 	public static ImageLoader getInstance() {
+		
 		if (imageLoader == null) {
 			imageLoader = new ImageLoader();
 		}

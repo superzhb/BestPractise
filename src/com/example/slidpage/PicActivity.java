@@ -13,14 +13,11 @@ import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import android.widget.AbsListView.LayoutParams;
 import android.widget.ImageView;
-import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
@@ -120,7 +117,7 @@ public class PicActivity extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// 增加返回主界面按钮
+		// 增加ActionBar返回主界面功能
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			Intent upIntent = NavUtils.getParentActivityIntent(this);
