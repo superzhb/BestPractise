@@ -2,6 +2,7 @@ package com.example.slidpage.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -96,7 +97,7 @@ public class PullToRefeshView extends LinearLayout implements OnTouchListener {
 			return false;
 		case MotionEvent.ACTION_UP:
 			up_y = event.getY();
-			if(lisenter != null){
+			if (lisenter != null) {
 				lisenter.refresh();
 			}
 
@@ -117,6 +118,38 @@ public class PullToRefeshView extends LinearLayout implements OnTouchListener {
 	}
 
 	public void finishRresh() {
+		new MyTask().execute();
+	}
 
+	class MyTask extends AsyncTask<Void, Integer, Void> {
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			while (true) {
+				if (-layoutParams.topMargin >= viewhead.getHeight()) {
+					break;
+				}
+				publishProgress(layoutParams.topMargin - 10);
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+
+			}
+			return null;
+		}
+
+		@Override
+		protected void onProgressUpdate(Integer... values) {
+			super.onProgressUpdate(values);
+			layoutParams.topMargin = values[0];
+			viewhead.setLayoutParams(layoutParams);
+		}
 	}
 }

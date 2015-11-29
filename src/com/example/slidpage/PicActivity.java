@@ -18,6 +18,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
@@ -82,6 +83,7 @@ public class PicActivity extends Activity {
 			ImageView imageView = new ImageView(this);
 			imageView.setPadding(2, 2, 2, 2);
 			imageView.setImageBitmap(bitmap);
+			imageView.setScaleType(ScaleType.FIT_CENTER);
 			if (height1 <= height2) {
 				if (height1 <= height3) {
 					linearLayout1.addView(imageView);
