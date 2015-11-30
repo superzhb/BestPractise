@@ -84,6 +84,7 @@ public class PullToRefeshView extends LinearLayout implements OnTouchListener {
 		switch (event.getAction()) {
 		case MotionEvent.ACTION_DOWN:
 			down_y = event.getY();
+			event.getRawX();
 			return false;
 		case MotionEvent.ACTION_MOVE:
 			move_y = event.getY();
