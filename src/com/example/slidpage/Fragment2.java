@@ -1,16 +1,15 @@
 package com.example.slidpage;
 
-import com.example.slidpage.util.PullToRefeshView;
-import com.example.slidpage.util.PullToRefeshView.OnpullTofreshLisenter;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.example.slidpage.util.PullToRefeshView;
+import com.example.slidpage.util.PullToRefeshView.OnpullTofreshLisenter;
 
 public class Fragment2 extends Fragment {
 	private ListView listView;
