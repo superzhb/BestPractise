@@ -1,16 +1,15 @@
 package com.example.slidpage;
 
-import com.example.slidpage.util.PullToRefeshView;
-import com.example.slidpage.util.PullToRefeshView.OnpullTofreshLisenter;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.example.slidpage.util.PullToRefeshView;
+import com.example.slidpage.util.PullToRefeshView.PullToRefreshListener;
 
 public class Fragment2 extends Fragment {
 	private ListView listView;
@@ -29,18 +28,18 @@ public class Fragment2 extends Fragment {
 		adapter = new ArrayAdapter<String>(getActivity(),
 				android.R.layout.simple_list_item_1, strs);
 		listView.setAdapter(adapter);
-		pullToRefeshView.setOnpullTofreshLisenter(new OnpullTofreshLisenter() {
+		pullToRefeshView.setOnRefreshListener(new PullToRefreshListener() {
 
 			@Override
-			public void refresh() {
+			public void onRefresh() {
 				try {
-					Thread.sleep(4000);
+					Thread.sleep(3000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				pullToRefeshView.finishRresh();
+				pullToRefeshView.finishRefreshing();
 			}
-		});
+		}, 1);
 		return view;
 	}
 }
