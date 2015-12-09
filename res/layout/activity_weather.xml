@@ -72,32 +72,13 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            >
+            android:layout_margin="10dp" >
 
-            <TextView  android:gravity="center" 
+            <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="风级" />
-
-            <TextView
-                android:id="@+id/wind"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            >
-
-            <TextView
-                android:layout_width="0dp" android:gravity="center" 
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:gravity="center"
                 android:text="湿度" />
 
             <TextView
@@ -110,13 +91,32 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-             >
+            android:layout_margin="10dp" >
 
             <TextView
-                android:layout_width="0dp" android:gravity="center" 
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="center"
+                android:text="风级" />
+
+            <TextView
+                android:id="@+id/wind"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
                 android:text="风向" />
 
             <TextView
@@ -129,13 +129,13 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-             >
+            android:layout_margin="10dp" >
 
-            <TextView android:gravity="center" 
+            <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="日出" />
 
             <TextView
@@ -148,13 +148,13 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-           >
+            android:layout_margin="10dp" >
 
-            <TextView android:gravity="center" 
+            <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="日落" />
 
             <TextView
