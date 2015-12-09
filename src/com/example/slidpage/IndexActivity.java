@@ -63,7 +63,7 @@ public class IndexActivity extends FragmentActivity implements OnClickListener {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	@SuppressLint("NewApi")
@@ -73,6 +73,8 @@ public class IndexActivity extends FragmentActivity implements OnClickListener {
 		inflater.inflate(R.menu.main, menu);
 		MenuItem item = menu.findItem(R.id.maserrch);
 		MenuItem music = menu.findItem(R.id.mavideo);
+		MenuItem weather = menu.findItem(R.id.maweather);
+		// 图片按钮
 		music.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
 			@Override
@@ -83,6 +85,7 @@ public class IndexActivity extends FragmentActivity implements OnClickListener {
 				return false;
 			}
 		});
+		// 搜索按钮
 		searchView = (SearchView) item.getActionView();
 		searchView.setOnSearchClickListener(new OnClickListener() {
 
@@ -101,6 +104,18 @@ public class IndexActivity extends FragmentActivity implements OnClickListener {
 
 			@Override
 			public boolean onMenuItemActionCollapse(MenuItem item) {
+				return false;
+			}
+		});
+
+		// 天气按钮
+		weather.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				Intent intent = new Intent(IndexActivity.this,
+						WeatherActivity.class);
+				startActivity(intent);
 				return false;
 			}
 		});
