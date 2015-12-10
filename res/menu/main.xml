@@ -2,7 +2,7 @@
 
     <item
         android:id="@+id/maserrch"
-        android:icon="@drawable/toolbar_new_node_press"
+        android:icon="@drawable/add"
         android:orderInCategory="100"
         android:showAsAction="always"
         android:actionViewClass="android.widget.SearchView"

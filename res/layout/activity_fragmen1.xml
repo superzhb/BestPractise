@@ -1,11 +1,26 @@
-<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/swipe_container"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
-    <com.example.slidpage.index.IndexableListView
-        android:id="@+id/listview"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_weight="1" >
 
-</android.support.v4.widget.SwipeRefreshLayout>
+        <com.example.slidpage.index.IndexableListView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <Button
+        android:id="@+id/add"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="18dp"
+        android:background="@drawable/add_press" />
+
+</LinearLayout>

@@ -32,6 +32,14 @@
             android:name="com.example.slidpage.WeatherActivity"
             android:parentActivityName="com.example.slidpage.IndexActivity" >
         </activity>
+        <activity android:name="com.example.slidpage.NoteActivity" >
+        </activity>
+
+        <provider
+            android:name="com.example.slidpage.contentprovider.NoteContentProvider"
+            android:authorities="com.example.slidpage.contentprovider"
+            android:exported="true" >
+        </provider>
     </application>
 
 </manifest>

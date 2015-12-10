@@ -35,7 +35,7 @@ public class WeatherActivity extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_weather);
-		// ActionBar���÷��ظ�ҳ��İ�ť
+		// ActionBar锟斤拷锟矫凤拷锟截革拷页锟斤拷陌锟脚�
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 
@@ -110,7 +110,7 @@ public class WeatherActivity extends Activity implements OnClickListener {
 						if ("sunset_1".equals(pullParser.getName())) {
 							weather.setRiluo(pullParser.nextText());
 						}
-						if ("alarm_details".equals(pullParser.getName())) {
+						if ("suggest".equals(pullParser.getName())) {
 							weather.setAlarm(pullParser.nextText());
 						}
 						break;

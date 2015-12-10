@@ -27,19 +27,22 @@ import android.widget.Toast;
 
 import com.example.slidpage.util.PagerSlidingTabStrip;
 
-public class IndexActivity extends FragmentActivity implements OnClickListener {
+@SuppressLint("NewApi")
+public class IndexActivity extends FragmentActivity {
 	private ViewPager pager;
 	private Fragment fragment1, fragment2, fragment3;
 	private FragmentManager fragmentManager;
-	private String[] title = new String[] { "消息", "联系人", "设置" };
+	private String[] title = new String[] { "心情日记", "联系人", "设置" };
 	private PagerSlidingTabStrip tabStrip;
 	private DisplayMetrics dm;
 	private SearchView searchView;
 
+	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_index);
+
 		dm = getResources().getDisplayMetrics();
 		tabStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
 		tabStrip.setShouldExpand(true);
@@ -52,6 +55,7 @@ public class IndexActivity extends FragmentActivity implements OnClickListener {
 		tabStrip.setTextSize((int) TypedValue.applyDimension(
 				TypedValue.COMPLEX_UNIT_SP, 15, dm));
 		initViewPager();
+
 		try {
 			ViewConfiguration config = ViewConfiguration.get(this);
 			Field menuKeyField = ViewConfiguration.class
@@ -181,10 +185,6 @@ public class IndexActivity extends FragmentActivity implements OnClickListener {
 			return title.length;
 		}
 
-	}
-
-	@Override
-	public void onClick(View v) {
 	}
 
 }
