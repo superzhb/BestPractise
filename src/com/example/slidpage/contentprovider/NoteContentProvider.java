@@ -44,7 +44,7 @@ public class NoteContentProvider extends ContentProvider {
 			break;
 		case NOTE_ID:
 			long id = ContentUris.parseId(uri);
-			cursor = database.query("note", projection, "id=?",
+			cursor = database.query("note", projection, "_id=?",
 					new String[] { id + "" }, null, null, null);
 			break;
 
@@ -88,7 +88,7 @@ public class NoteContentProvider extends ContentProvider {
 			return database.delete("note", selection, selectionArgs);
 		case NOTE_ID:
 			long id = ContentUris.parseId(uri);
-			return database.delete("note", "id=?", new String[] { id + "" });
+			return database.delete("note", "_id=?", new String[] { id + "" });
 		default:
 		}
 		return 0;

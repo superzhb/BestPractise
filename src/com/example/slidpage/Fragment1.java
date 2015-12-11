@@ -1,6 +1,7 @@
 package com.example.slidpage;
 
 import android.annotation.SuppressLint;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -12,22 +13,15 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
-import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnDragListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AbsListView;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.SectionIndexer;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -39,32 +33,33 @@ import com.example.slidpage.index.StringMatcher;
 @SuppressLint("NewApi")
 public class Fragment1 extends Fragment implements OnClickListener,
 		LoaderCallbacks<Cursor> {
-	private SwipeRefreshLayout swipeRefreshLayout;
+	// private SwipeRefreshLayout swipeRefreshLayout;
 	private IndexableListView indexableListView;
-	private Button button;
+	private Button button, delbtn;
 	private LoaderManager loaderManager;
 	private MyListAdaptor adapter;
 	private CursorLoader loader;
-	private ImageView imageView;
+	private TextView textid;
+	private ContentResolver resolver;
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		button = (Button) getActivity().findViewById(R.id.add);
 		button.setOnClickListener(this);
-
+		resolver = getActivity().getContentResolver();
 		loaderManager = this.getLoaderManager();
 		loaderManager.initLoader(1, null, this);
-		swipeRefreshLayout = (SwipeRefreshLayout) getActivity().findViewById(
-				R.id.swipe_container);
+		// swipeRefreshLayout = (SwipeRefreshLayout) getActivity().findViewById(
+		// R.id.swipe_container);
 
 		indexableListView = (IndexableListView) getActivity().findViewById(
 				R.id.listview);
 
 		adapter = new MyListAdaptor(getActivity(), R.layout.content_layout,
-				null, new String[] { "content", "date", "encode" }, new int[] {
-						R.id.content_content, R.id.content_date,
-						R.id.content_encode }, 0);
+				null, new String[] { "content", "date", "encode", "_id" },
+				new int[] { R.id.content_content, R.id.content_date,
+						R.id.content_encode, R.id.content_id }, 0);
 		indexableListView.setAdapter(adapter);
 
 		indexableListView.setFastScrollEnabled(true);
@@ -72,9 +67,8 @@ public class Fragment1 extends Fragment implements OnClickListener,
 
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
-				if (null != imageView
-						&& imageView.getVisibility() == View.VISIBLE) {
-					imageView.setVisibility(View.GONE);
+				if (null != delbtn && delbtn.getVisibility() == View.VISIBLE) {
+					delbtn.setVisibility(View.GONE);
 				}
 				return false;
 			}
@@ -85,41 +79,47 @@ public class Fragment1 extends Fragment implements OnClickListener,
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				if (null != imageView
-						&& imageView.getVisibility() == View.VISIBLE) {
-					imageView.setVisibility(View.GONE);
+				if (null != delbtn && delbtn.getVisibility() == View.VISIBLE) {
+					delbtn.setVisibility(View.GONE);
 					return;
 				}
-				imageView = (ImageView) view.findViewById(R.id.del);
-				imageView.setVisibility(View.VISIBLE);
-				imageView.setOnClickListener(new OnClickListener() {
+				delbtn = (Button) view.findViewById(R.id.del);
+				delbtn.setVisibility(View.VISIBLE);
+				textid = (TextView) view.findViewById(R.id.content_id);
+				delbtn.setOnClickListener(new OnClickListener() {
 
 					@Override
 					public void onClick(View v) {
-						Toast.makeText(getActivity(), "111" + "",
-								Toast.LENGTH_SHORT).show();
+						Uri url = Uri
+								.parse("content://com.example.slidpage.contentprovider/note/"
+										+ textid.getText());
+						int deleteId = resolver.delete(url, null, null);
+						if (deleteId > -1) {
+							loaderManager
+									.restartLoader(1, null, Fragment1.this);
+						}
 					}
 				});
 			}
 		});
 
 		// 设置刷新时动画的颜色，可以设置4个
-		swipeRefreshLayout.setColorScheme(android.R.color.holo_blue_light,
-				android.R.color.holo_red_light,
-				android.R.color.holo_orange_light,
-				android.R.color.holo_green_light);
-		swipeRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
-
-			@Override
-			public void onRefresh() {
-				new Handler().postDelayed(new Runnable() {
-					@Override
-					public void run() {
-						swipeRefreshLayout.setRefreshing(false);
-					}
-				}, 3000);
-			}
-		});
+		// swipeRefreshLayout.setColorScheme(android.R.color.holo_blue_light,
+		// android.R.color.holo_red_light,
+		// android.R.color.holo_orange_light,
+		// android.R.color.holo_green_light);
+		// swipeRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+		//
+		// @Override
+		// public void onRefresh() {
+		// new Handler().postDelayed(new Runnable() {
+		// @Override
+		// public void run() {
+		// swipeRefreshLayout.setRefreshing(false);
+		// }
+		// }, 3000);
+		// }
+		// });
 	}
 
 	@SuppressLint("InlinedApi")
@@ -191,6 +191,8 @@ public class Fragment1 extends Fragment implements OnClickListener,
 						.findViewById(R.id.content_date);
 				hodler.encode = (TextView) convertView
 						.findViewById(R.id.content_encode);
+				hodler.id = (TextView) convertView
+						.findViewById(R.id.content_id);
 				convertView.setTag(hodler);
 			} else {
 				hodler = (ViewHodler) convertView.getTag();
@@ -204,6 +206,8 @@ public class Fragment1 extends Fragment implements OnClickListener,
 			hodler.encode.setText(cursor.getString(cursor
 					.getColumnIndex("encode")));
 
+			hodler.id.setText(cursor.getString(cursor.getColumnIndex("_id")));
+
 			return convertView;
 		}
 
@@ -215,7 +219,7 @@ public class Fragment1 extends Fragment implements OnClickListener,
 	}
 
 	public static class ViewHodler {
-		private TextView content, date, encode;
+		private TextView content, date, encode, id;
 	}
 
 	@Override
@@ -242,6 +246,7 @@ public class Fragment1 extends Fragment implements OnClickListener,
 	@Override
 	public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
 		adapter.swapCursor(cursor);
+		indexableListView.setAdapter(adapter);
 	}
 
 	@Override

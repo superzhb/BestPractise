@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.Locale;
 
 import net.sourceforge.pinyin4j.PinyinHelper;
-
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -16,7 +15,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class NoteActivity extends Activity implements OnClickListener {
 	private Button ok, cancel;

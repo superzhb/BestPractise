@@ -31,15 +31,23 @@
         android:layout_height="wrap_content"
         android:visibility="gone" >
     </TextView>
+    
+    <TextView
+        android:id="@+id/content_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" >
+    </TextView>
 
-    <ImageView
+    <Button
         android:id="@+id/del"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:src="@drawable/shanchu" 
-        android:visibility="gone"/>
+        android:layout_marginRight="15dp"
+        android:background="#FF2525"
+        android:text="删除"
+        android:textSize="15sp"
+        android:visibility="gone" />
 
 </LinearLayout>

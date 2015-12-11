@@ -36,8 +36,6 @@ public class WeatherActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_weather);
 
-		// ActionBar锟斤拷锟矫凤拷锟截革拷页锟斤拷陌锟脚�
-
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 
@@ -136,9 +134,6 @@ public class WeatherActivity extends Activity implements OnClickListener {
 		@Override
 		protected void onProgressUpdate(String... values) {
 			super.onProgressUpdate(values);
-			Toast.makeText(WeatherActivity.this, values[0], Toast.LENGTH_SHORT)
-					.show();
-			Log.e("", values[0]);
 		}
 
 		@Override
