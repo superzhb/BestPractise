@@ -2,6 +2,9 @@ package com.example.slidpage;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
+
+import net.sourceforge.pinyin4j.PinyinHelper;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -13,6 +16,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class NoteActivity extends Activity implements OnClickListener {
 	private Button ok, cancel;
@@ -53,10 +57,21 @@ public class NoteActivity extends Activity implements OnClickListener {
 
 		@Override
 		protected Void doInBackground(Void... params) {
+			if (text.getText().toString().trim().length() <= 0) {
+				return null;
+			}
+			String[] pinyin = PinyinHelper.toHanyuPinyinStringArray(text
+					.getText().toString().charAt(0));
 
 			ContentValues values = new ContentValues();
 			values.put("content", text.getText().toString());
 			values.put("date", formateDate());
+			if (null != pinyin && pinyin.length > 0) {
+				values.put("encode", pinyin[0]);
+			} else {
+				values.put("encode",
+						String.valueOf((text.getText().toString()).charAt(0)));
+			}
 			resolver.insert(
 					Uri.parse("content://com.example.slidpage.contentprovider/note"),
 					values);
@@ -66,7 +81,8 @@ public class NoteActivity extends Activity implements OnClickListener {
 	}
 
 	private String formateDate() {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat dateFormat = new SimpleDateFormat(
+				"yyyy-MM-dd hh:mm:ss", Locale.CHINESE);
 		return dateFormat.format(new Date(System.currentTimeMillis()));
 	}
 

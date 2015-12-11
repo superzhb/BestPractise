@@ -16,7 +16,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp" >
 
         <Button
             android:id="@+id/invis"
@@ -27,20 +28,20 @@
 
         <Button
             android:id="@+id/ok"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_centerHorizontal="true"
             android:layout_margin="10dp"
             android:layout_toLeftOf="@id/invis"
-            android:text="确定" />
+            android:background="@drawable/ok" />
 
         <Button
             android:id="@+id/cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_margin="10dp"
             android:layout_toRightOf="@id/invis"
-            android:text="取消" />
+            android:background="@drawable/cancel" />
     </RelativeLayout>
 
 </LinearLayout>

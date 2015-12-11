@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MySqliteDbHelper extends SQLiteOpenHelper {
 	private static MySqliteDbHelper dbHelper;
-	private static final String SQL = "create table note(id integer primary key autoincrement ,content text,date text unique)";
+	private static final String SQL = "create table note(_id integer primary key autoincrement ,content text,date text not null,encode text)";
 
 	private MySqliteDbHelper(Context context) {
 		super(context, "mydb.db", null, 1);
