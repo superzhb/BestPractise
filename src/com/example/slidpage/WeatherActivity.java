@@ -9,21 +9,19 @@ import java.net.URLEncoder;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
-import com.example.slidpage.model.Weather;
-
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Xml;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.slidpage.model.Weather;
 
 public class WeatherActivity extends Activity implements OnClickListener {
 	private Button search;
