@@ -44,7 +44,6 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginRight="15dp"
         android:background="#FF2525"
         android:text="删除"
         android:textSize="15sp"

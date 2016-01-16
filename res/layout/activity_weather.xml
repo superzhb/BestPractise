@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="城市" />
+                android:text="城市:" />
 
             <TextView
                 android:id="@+id/city"
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="温度" />
+                android:text="温度:" />
 
             <TextView
                 android:id="@+id/temp"
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="湿度" />
+                android:text="湿度:" />
 
             <TextView
                 android:id="@+id/shidu"
@@ -98,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="风级" />
+                android:text="风级:" />
 
             <TextView
                 android:id="@+id/wind"
@@ -117,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="风向" />
+                android:text="风向:" />
 
             <TextView
                 android:id="@+id/fengxiang"
@@ -136,7 +136,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="日出" />
+                android:text="日出:" />
 
             <TextView
                 android:id="@+id/richu"
@@ -155,7 +155,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="日落" />
+                android:text="日落:" />
 
             <TextView
                 android:id="@+id/riluo"
@@ -175,7 +175,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="告警" />
+                android:text="告警:" />
 
             <TextView
                 android:id="@+id/alarm"

@@ -37,15 +37,15 @@ public class PicActivity extends Activity {
 	private ScrollView scrollView;
 	private List<ImageView> imageViews = new ArrayList<ImageView>();
 
-	private int[] images = new int[] { R.drawable.caise1, R.drawable.caise2,
-			R.drawable.caise4, R.drawable.jj11, R.drawable.d, R.drawable.b,
-			R.drawable.e, R.drawable.c, R.drawable.qq };
+	private int[] images = new int[] { R.drawable.p2, R.drawable.p2,
+			R.drawable.p3, R.drawable.p4, R.drawable.p5, R.drawable.p6,
+			R.drawable.p7, R.drawable.p8, R.drawable.p9 };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pic);
-		
+
 		actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 
@@ -65,14 +65,14 @@ public class PicActivity extends Activity {
 				if (event.getAction() == MotionEvent.ACTION_UP) {
 					if (scrollView.getChildAt(0).getHeight() == scrollView
 							.getScrollY() + scrollView.getHeight()) {
-						loadImage(10);
+						loadImage(20);
 					}
 				}
 				return false;
 			}
 
 		});
-		loadImage(15);
+		loadImage(20);
 	}
 
 	private void loadImage(int qua) {
@@ -84,7 +84,7 @@ public class PicActivity extends Activity {
 			ImageView imageView = new ImageView(this);
 			imageView.setPadding(2, 2, 2, 2);
 			imageView.setImageBitmap(bitmap);
-			imageView.setScaleType(ScaleType.FIT_CENTER);
+			imageView.setScaleType(ScaleType.FIT_XY);
 			if (height1 <= height2) {
 				if (height1 <= height3) {
 					linearLayout1.addView(imageView);

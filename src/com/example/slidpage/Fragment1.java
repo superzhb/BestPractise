@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
@@ -25,7 +24,6 @@ import android.widget.Button;
 import android.widget.SectionIndexer;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.slidpage.index.IndexableListView;
 import com.example.slidpage.index.StringMatcher;
@@ -50,8 +48,6 @@ public class Fragment1 extends Fragment implements OnClickListener,
 		resolver = getActivity().getContentResolver();
 		loaderManager = this.getLoaderManager();
 		loaderManager.initLoader(1, null, this);
-		// swipeRefreshLayout = (SwipeRefreshLayout) getActivity().findViewById(
-		// R.id.swipe_container);
 
 		indexableListView = (IndexableListView) getActivity().findViewById(
 				R.id.listview);
@@ -102,24 +98,6 @@ public class Fragment1 extends Fragment implements OnClickListener,
 				});
 			}
 		});
-
-		// 设置刷新时动画的颜色，可以设置4个
-		// swipeRefreshLayout.setColorScheme(android.R.color.holo_blue_light,
-		// android.R.color.holo_red_light,
-		// android.R.color.holo_orange_light,
-		// android.R.color.holo_green_light);
-		// swipeRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
-		//
-		// @Override
-		// public void onRefresh() {
-		// new Handler().postDelayed(new Runnable() {
-		// @Override
-		// public void run() {
-		// swipeRefreshLayout.setRefreshing(false);
-		// }
-		// }, 3000);
-		// }
-		// });
 	}
 
 	@SuppressLint("InlinedApi")

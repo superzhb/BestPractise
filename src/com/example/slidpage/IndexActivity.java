@@ -32,7 +32,7 @@ public class IndexActivity extends FragmentActivity {
 	private ViewPager pager;
 	private Fragment fragment1, fragment2, fragment3;
 	private FragmentManager fragmentManager;
-	private String[] title = new String[] { "心情日记", "联系人", "设置" };
+	private String[] title = new String[] { "心情日记", "未知", "机器人小捷" };
 	private PagerSlidingTabStrip tabStrip;
 	private DisplayMetrics dm;
 	private SearchView searchView;
