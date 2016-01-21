@@ -50,10 +50,8 @@
         android:id="@+id/in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/radiogroup"
         android:layout_centerHorizontal="true"
-        android:textColor="#C8F3F2"
-        android:textSize="20sp" 
-        />
+        android:layout_centerVertical="true"
+        android:textSize="25sp" />
 
 </RelativeLayout>

@@ -76,10 +76,11 @@ public class IndexActivity extends FragmentActivity {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main, menu);
 		MenuItem item = menu.findItem(R.id.maserrch);
-		MenuItem music = menu.findItem(R.id.mavideo);
+		MenuItem tologin = menu.findItem(R.id.tologin);
 		MenuItem weather = menu.findItem(R.id.maweather);
+		MenuItem mapphoto = menu.findItem(R.id.mapphoto);
 		// 图片按钮
-		music.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+		mapphoto.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
 			@Override
 			public boolean onMenuItemClick(MenuItem item) {
@@ -112,6 +113,18 @@ public class IndexActivity extends FragmentActivity {
 			}
 		});
 
+		// 到登陆界面
+		tologin.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				Intent intent = new Intent(IndexActivity.this,
+						LoginActivity.class);
+				startActivity(intent);
+				finish();
+				return false;
+			}
+		});
 		// 天气按钮
 		weather.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 

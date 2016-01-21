@@ -43,7 +43,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(MainActivity.this,
-						IndexActivity.class);
+						LoginActivity.class);
 				startActivity(intent);
 				finish();
 			}
@@ -70,7 +70,7 @@ public class MainActivity extends Activity {
 			public void onPageSelected(int position) {
 				in.setText("");
 				if (position == views.size() - 1) {
-					in.setText("进入");
+					in.setText("开始体验");
 				}
 				currentIndex = position;
 				for (RadioButton button : buttons) {

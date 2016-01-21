@@ -42,6 +42,8 @@
         </activity>
         <activity android:name="com.example.slidpage.tuLing.TLActivity" >
         </activity>
+        <activity android:name="com.example.slidpage.LoginActivity" >
+        </activity>
 
         <provider
             android:name="com.example.slidpage.contentprovider.NoteContentProvider"

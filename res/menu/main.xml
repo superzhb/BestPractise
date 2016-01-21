@@ -2,17 +2,17 @@
 
     <item
         android:id="@+id/maserrch"
+        android:actionViewClass="android.widget.SearchView"
         android:icon="@drawable/add"
         android:orderInCategory="100"
         android:showAsAction="always"
-        android:actionViewClass="android.widget.SearchView"
         android:title="搜索"/>
     <item
-        android:id="@+id/mavideo"
+        android:id="@+id/tologin"
         android:icon="@drawable/toolbar_sort"
         android:orderInCategory="100"
         android:showAsAction="always"
-        android:title="图片"/>
+        android:title="退出"/>
     <item
         android:id="@+id/maweather"
         android:icon="@drawable/toolbar_view_grid_press"
