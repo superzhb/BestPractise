@@ -14,6 +14,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Xml;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -49,6 +50,7 @@ public class WeatherActivity extends Activity implements OnClickListener {
 		richu = (TextView) findViewById(R.id.richu);
 		riluo = (TextView) findViewById(R.id.riluo);
 		alarm = (TextView) findViewById(R.id.alarm);
+		onClick(search);
 
 	}
 
@@ -56,8 +58,22 @@ public class WeatherActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.weserrch:
-			String cityName = city.getText().toString();
+			String cityName = city.getText().toString().trim();
+
+			if (cityName.equals("")) {
+				cityName = PreferenceManager.getDefaultSharedPreferences(
+						WeatherActivity.this).getString("city", "北京");
+
+			}
+			if (cityName.equals("")) {
+				cityName = "北京";
+
+			}
+			city.setText(cityName);
+			city.setSelection(cityName.length());
 			new SerachWeatherTask().execute(cityName);
+			PreferenceManager.getDefaultSharedPreferences(WeatherActivity.this)
+					.edit().remove("city").putString("city", cityName).commit();
 			break;
 
 		default:
