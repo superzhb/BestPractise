@@ -32,7 +32,7 @@ public class IndexActivity extends FragmentActivity {
 	private ViewPager pager;
 	private Fragment fragment1, fragment2, fragment3;
 	private FragmentManager fragmentManager;
-	private String[] title = new String[] { "心情日记", "未知", "机器人小捷" };
+	private String[] title = new String[] { "首页", "日记", "机器人小一" };
 	private PagerSlidingTabStrip tabStrip;
 	private DisplayMetrics dm;
 	private SearchView searchView;
@@ -46,8 +46,8 @@ public class IndexActivity extends FragmentActivity {
 		dm = getResources().getDisplayMetrics();
 		tabStrip = (PagerSlidingTabStrip) findViewById(R.id.tabs);
 		tabStrip.setShouldExpand(true);
-		tabStrip.setTextColor(Color.parseColor("#45c01a"));
-		tabStrip.setIndicatorColor(Color.parseColor("#45c01a"));
+		tabStrip.setTextColor(Color.parseColor("#F7C019"));
+		tabStrip.setIndicatorColor(Color.parseColor("#F7C019"));
 		tabStrip.setIndicatorHeight((int) TypedValue.applyDimension(
 				TypedValue.COMPLEX_UNIT_DIP, 4, dm));
 		tabStrip.setUnderlineHeight((int) TypedValue.applyDimension(
@@ -163,6 +163,8 @@ public class IndexActivity extends FragmentActivity {
 		});
 		fragmentManager = getSupportFragmentManager();
 		pager.setAdapter(new MyFragmentPagerAdaptor(fragmentManager));
+		// 设置 缓存 的个数
+		pager.setOffscreenPageLimit(2);
 		tabStrip.setViewPager(pager);
 	}
 

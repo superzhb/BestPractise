@@ -81,6 +81,7 @@ public class LoginActivity extends Activity {
 			}
 		});
 
+		// 忘记密码
 		forget.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -113,6 +114,7 @@ public class LoginActivity extends Activity {
 		});
 	}
 
+	// 将方形图片转化为圆形图片
 	public Bitmap toRoundBitmap(Bitmap bitmap) {
 		int width = bitmap.getWidth();
 		int height = bitmap.getHeight();

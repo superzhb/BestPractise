@@ -152,6 +152,8 @@ public class PullToRefeshView extends LinearLayout implements OnTouchListener {
 	 */
 	private float yDown;
 
+	private float xDown;
+
 	/**
 	 * 在被判定为滚动之前用户手指可以移动的最大值。
 	 */
@@ -214,6 +216,7 @@ public class PullToRefeshView extends LinearLayout implements OnTouchListener {
 			switch (event.getAction()) {
 			case MotionEvent.ACTION_DOWN:
 				yDown = event.getRawY();
+				xDown = event.getRawX();
 				break;
 			case MotionEvent.ACTION_MOVE:
 				float yMove = event.getRawY();
@@ -237,6 +240,7 @@ public class PullToRefeshView extends LinearLayout implements OnTouchListener {
 							+ hideHeaderHeight;
 					header.setLayoutParams(headerLayoutParams);
 				}
+				
 				break;
 			case MotionEvent.ACTION_UP:
 			default:
